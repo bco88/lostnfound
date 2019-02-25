@@ -24,8 +24,6 @@ allprojects {
             url "https://atlas.microsoft.com/sdk/android"
         }
     }
-
-
 }
 
 task clean(type: Delete) {
