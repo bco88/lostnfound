@@ -25,3 +25,7 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+maven {
+    url "https://atlas.microsoft.com/sdk/android"
+}
