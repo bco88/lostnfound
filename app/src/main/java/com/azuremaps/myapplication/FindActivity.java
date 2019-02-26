@@ -15,13 +15,8 @@ public class FindActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_find);
-
         mTextMessage = (TextView) findViewById(R.id.message);
         mTextMessage.setText("Find");
-
-        navigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        navigationView.setOnNavigationItemSelectedListener(this);
     }
 
     @Override

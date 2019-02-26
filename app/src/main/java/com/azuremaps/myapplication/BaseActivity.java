@@ -9,9 +9,37 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.microsoft.azure.maps.mapcontrol.AzureMaps;
+
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
+    static {
+        AzureMaps.setSubscriptionKey(R.string.map);
+    }
+
     protected BottomNavigationView navigationView;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getContentViewId());
+
+        navigationView = (BottomNavigationView) findViewById(R.id.navigation);
+        navigationView.setOnNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        updateNavigationBarState();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(0, 0);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
@@ -28,7 +56,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
                 break;
         }
         finish();
-        }, 300);
+        }, 100);
         return true;
     }
 

@@ -17,10 +17,6 @@ import com.microsoft.azure.maps.mapcontrol.source.DataSource;
 
 public class LostActivity extends BaseActivity {
 
-    static {
-        AzureMaps.setSubscriptionKey("ID");
-    }
-
     MapControl mapControl;
 
     private TextView mTextMessage;
@@ -28,17 +24,9 @@ public class LostActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lost);
-
-        mTextMessage = (TextView) findViewById(R.id.message);
-
-        navigationView = (BottomNavigationView) findViewById(R.id.navigation);
-        navigationView.setOnNavigationItemSelectedListener(this);
-
+        //mTextMessage = (TextView) findViewById(R.id.message);
         mapControl = findViewById(R.id.mapcontrol);
-
         mapControl.onCreate(savedInstanceState);
-
     }
 
 
