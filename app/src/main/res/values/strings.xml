@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="title_lost">Lost</string>
+    <string name="title_found">Found</string>
+    <string name="title_find">Find</string>
+    <string name="title_activity_base">BaseActivity</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_found">FoundActivity</string>
+    <string name="title_activity_find">FindActivity</string>
+    <string name="title_activity_lost">LostActivity</string>
 </resources>
