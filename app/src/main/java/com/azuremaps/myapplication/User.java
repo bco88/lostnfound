@@ -3,9 +3,7 @@ package com.azuremaps.myapplication;
 import java.util.Date;
 
 public class User {
-    public User(int id) {
-        this.id = id;
-    }
+    public User(){}
 
     private int id;
 

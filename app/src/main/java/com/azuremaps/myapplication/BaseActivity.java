@@ -14,7 +14,7 @@ import com.microsoft.azure.maps.mapcontrol.AzureMaps;
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
     static {
-        AzureMaps.setSubscriptionKey(R.string.map);
+        AzureMaps.setSubscriptionKey("replace_with_your_key");
     }
 
     protected BottomNavigationView navigationView;
