@@ -15,6 +15,7 @@ import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
 import com.microsoft.azure.maps.mapcontrol.MapControl;
 import com.microsoft.azure.maps.mapcontrol.layer.SymbolLayer;
+import com.microsoft.azure.maps.mapcontrol.options.c;
 import com.microsoft.azure.maps.mapcontrol.source.DataSource;
 import static com.microsoft.azure.maps.mapcontrol.options.SymbolLayerOptions.iconImage;
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
@@ -61,6 +62,7 @@ public class FoundActivity extends BaseActivity  {
                                 map.images.add("my-icon", R.drawable.mapcontrol_marker_red);
                                 map.sources.add(dataSource);
                                 map.layers.add(symbolLayer);
+                                map.setCamera(new c(Point.fromLngLat(curLon, curLat), 0,0,9,1,20));
                             });
                         }
                     }

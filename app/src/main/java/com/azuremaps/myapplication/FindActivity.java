@@ -14,6 +14,7 @@ import com.mapbox.geojson.Feature;
 import com.mapbox.geojson.Point;
 import com.microsoft.azure.maps.mapcontrol.MapControl;
 import com.microsoft.azure.maps.mapcontrol.layer.SymbolLayer;
+import com.microsoft.azure.maps.mapcontrol.options.c;
 import com.microsoft.azure.maps.mapcontrol.source.DataSource;
 
 import java.util.ArrayList;
@@ -41,17 +42,18 @@ public class FindActivity extends BaseActivity  {
         List<Point> lostItems = new ArrayList<>();
         lostItems.add(Point.fromLngLat(-122.331, 47.64));
         lostItems.add(Point.fromLngLat(-112.33, 47.641));
-        lostItems.add(Point.fromLngLat(-102.331, 47.641));
-        lostItems.add(Point.fromLngLat(-122.331, 40.641));
-        lostItems.add(Point.fromLngLat(-122.331, 20.041));
+        lostItems.add(Point.fromLngLat(-122.231, 37.521));
+        lostItems.add(Point.fromLngLat(-119.331, 40.641));
+        lostItems.add(Point.fromLngLat(-121.931, 37.541));
+        lostItems.add(Point.fromLngLat(-121.931, 37.341));
 
         lostItemsDS.add(lostItems.toArray(new Point[0]));
 
         SymbolLayer lostItemsLayer = new SymbolLayer(lostItemsDS);
-        lostItemsLayer.setOptions(iconImage("my-icon"));
+        lostItemsLayer.setOptions(iconImage("red-icon"));
 
         mapControl.getMapAsync(map -> {
-            map.images.add("my-icon", R.drawable.mapcontrol_marker_red);
+            map.images.add("red-icon", R.drawable.mapcontrol_marker_red);
             map.sources.add(lostItemsDS);
             map.layers.add(lostItemsLayer);
         });
@@ -84,6 +86,7 @@ public class FindActivity extends BaseActivity  {
                                 map.images.add("blue-icon", R.drawable.mapcontrol_marker_blue);
                                 map.sources.add(dataSource);
                                 map.layers.add(symbolLayer);
+                                map.setCamera(new c(Point.fromLngLat(curLon, curLat), 0,0,9,1,20));
                             });
                         }
                     }
