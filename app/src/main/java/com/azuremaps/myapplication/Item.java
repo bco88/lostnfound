@@ -1,5 +1,7 @@
 package com.azuremaps.myapplication;
 
+import com.mapbox.geojson.Point;
+
 public class Item {
     public long getId() {
         return id;
@@ -21,6 +23,14 @@ public class Item {
         this.description = description;
     }
 
+    public Point getLocation() {
+        return location;
+    }
+
+    public void setLocation(Point location) {
+        this.location = location;
+    }
+
     public User getUser() {
         return user;
     }
@@ -29,10 +39,11 @@ public class Item {
         this.user = user;
     }
 
-    public Item(User user) {
-        this.user = user;
+    public void setId(long id) {
+        this.id = id;
     }
 
+    private Point location;
     private User user;
     private long id;
     private boolean found;
