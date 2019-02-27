@@ -55,6 +55,7 @@ public class LostActivity extends BaseActivity {
     DataSource dataSource;
     DataSource lineSource;
     DataSource clickSource;
+    DataSource itemSource;
     Point clickedLocation;
 
     @Override
@@ -76,45 +77,54 @@ public class LostActivity extends BaseActivity {
             map.sources.add(clickSource);
             map.layers.add(clickLayer);
 
+            // Clicked source and layer
+            itemSource = new DataSource();
+
+            SymbolLayer itemLayer = new SymbolLayer(clickSource);
+            itemLayer.setOptions(iconImage("red-icon"));
+            map.images.add("red-icon", R.drawable.mapcontrol_marker_red);
+            map.sources.add(itemSource);
+            map.layers.add(itemLayer);
+
 
             //Other stuff
             dataSource = new DataSource();
-            lineSource = new DataSource();
             SymbolLayer symbolLayer = new SymbolLayer(dataSource);
             symbolLayer.setOptions(iconImage("my-icon"));
-            //dataSource.add(Point.fromLngLat(-122.33, 47.64));
-
             map.images.add("my-icon", R.drawable.mapcontrol_marker_red);
             map.sources.add(dataSource);
             map.layers.add(symbolLayer);
+
+            lineSource = new DataSource();
+
+            clickedLocation = Point.fromLngLat(-122.33, 47.64);
+
+                    //dataSource.add(Point.fromLngLat(-122.33, 47.64));
+
+
+
 
 //            LineLayer lineLayer = new LineLayer(lineSource, LineLayerOptions.strokeColor("black"), LineLayerOptions.strokeWidth(5));
 //            map.sources.add(lineSource);
 //            map.layers.add(lineLayer);
 
             map.events.add((OnClick) (lat, lon) -> {
-
                 clickSource.clear();
                 clickSource.add(Feature.fromGeometry(Point.fromLngLat(lon,  lat)));
-
-//                clickedLocation = Point.fromLngLat(lon, lat);
-//                dataSource.clear();
-//                dataSource.add(clickedLocation);
             });
 
         });
 
         findViewById(R.id.button_send).setOnClickListener(v -> {
+//            Map<User, Distance> finders = DataStore.getInstance().GetFinders(clickedLocation);
+//            if (dataSource != null) {
+//                for( Map.Entry<User, Distance> entry : finders.entrySet())
+//                {
+//                    dataSource.add(entry.getKey().getLocation());
+//                }
+//            }
 
-            Map<User, Distance> finders = DataStore.getInstance().GetFinders(clickedLocation);
-            if (dataSource != null) {
-                for( Map.Entry<User, Distance> entry : finders.entrySet())
-                {
-                    dataSource.add(entry.getKey().getLocation());
-                }
-            }
-
-            drawLinesToItem(clickedLocation);
+            //drawLinesToItem(clickedLocation);
             CreateNewItem();
         });
     }
@@ -151,15 +161,12 @@ public class LostActivity extends BaseActivity {
         latTextBox.setHint("Latitude");
         layout.addView(latTextBox);
 
-
-
         final EditText lonTextBox = new EditText(this);
         lonTextBox.setHint("Longitude");
         layout.addView(lonTextBox);
 
         latTextBox.setText(String.valueOf(clickedLocation.latitude()));
         lonTextBox.setText(String.valueOf(clickedLocation.longitude()));
-
 
         final EditText descriptionBox = new EditText(this);
         descriptionBox.setHint("Description");
@@ -179,6 +186,13 @@ public class LostActivity extends BaseActivity {
                 item.setLocation(Point.fromLngLat(Double.valueOf(lon), Double.valueOf(lat)));
                 item.setUser(new User("joe"));
                 DataStore.getInstance().AddItem(item);
+                List<Item> items = DataStore.getInstance().GetUserItems(new User("joe"));
+                itemSource.clear();
+                for(Item i : items)
+                {
+                    itemSource.add(i.getLocation());
+                }
+
             }
 
         });
